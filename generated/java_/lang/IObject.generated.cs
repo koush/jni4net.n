@@ -8,21 +8,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace java.lang.reflect {
+namespace java_.lang {
     
     
     #region Component Designer generated code 
-    [global::net.sf.jni4net.attributes.JavaInterfaceAttribute()]
-    public partial interface Type {
-    }
-    #endregion
-    
-    #region Component Designer generated code 
-    public unsafe partial class Type_ {
+    public unsafe partial class IObject_ {
         
         public new static global::java.lang.Class _class {
             get {
-                return global::java.lang.reflect.@__Type.staticClass;
+                return global::java_.lang.@__IObject.staticClass;
             }
         }
     }
@@ -30,29 +24,22 @@ namespace java.lang.reflect {
     
     #region Component Designer generated code 
     [global::net.sf.jni4net.attributes.JavaProxyAttribute()]
-    [global::net.sf.jni4net.attributes.ClrWrapperAttribute(typeof(global::java.lang.reflect.Type))]
-    internal unsafe partial class @__Type : global::java.lang.Object, global::java.lang.reflect.Type {
+    internal unsafe partial class @__IObject : global::java.lang.Object, global::java_.lang.IObject {
         
         internal static global::java.lang.Class staticClass;
         
-        protected @__Type(global::net.sf.jni4net.jni.JNIEnv env) : 
+        protected @__IObject(global::net.sf.jni4net.jni.JNIEnv env) : 
                 base(env) {
         }
         
         private static void InitJNI(global::net.sf.jni4net.jni.JNIEnv env, java.lang.Class staticClass) {
-            global::java.lang.reflect.@__Type.staticClass = staticClass;
-        }
-        
-        private static global::System.Collections.Generic.List<global::net.sf.jni4net.jni.JNINativeMethod> @__Init(global::net.sf.jni4net.jni.JNIEnv env, global::java.lang.Class clazz) {
-            global::System.Type type = typeof(__Type);
-            global::System.Collections.Generic.List<global::net.sf.jni4net.jni.JNINativeMethod> methods = new global::System.Collections.Generic.List<global::net.sf.jni4net.jni.JNINativeMethod>();
-            return methods;
+            global::java_.lang.@__IObject.staticClass = staticClass;
         }
         
         internal sealed class ContructionHelper : global::net.sf.jni4net.utils.IConstructionHelper {
             
             public global::net.sf.jni4net.jni.IJavaProxy CreateProxy(global::net.sf.jni4net.jni.JNIEnv env) {
-                return new global::java.lang.reflect.@__Type(env);
+                return new global::java_.lang.@__IObject(env);
             }
         }
     }
