@@ -26,7 +26,7 @@ using java_.lang;
 
 namespace net.sf.jni4net.jni
 {
-    public interface IJavaProxy : IObject
+    public interface ICJvmProxy : IObject
     {
         IntPtr Native { get; set; }
         void Init(JNIEnv env, IntPtr obj, Class clazz);
