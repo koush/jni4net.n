@@ -29,7 +29,7 @@ using Microsoft.Win32;
 
 namespace net.sf.jni4net.jni
 {
-    internal static unsafe class JNI
+    public static unsafe class JNI
     {
         public const int JNI_VERSION_1_1 = 0x00010001;
         public const int JNI_VERSION_1_2 = 0x00010002;
