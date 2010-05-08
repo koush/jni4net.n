@@ -29,14 +29,14 @@ namespace net.sf.jni4net.jni
 {
     unsafe partial class JNIEnv
     {
-        private static JavaVM defaultVM;
-        [ThreadStatic] private static JNIEnv threadJNIEnv;
+        public static JavaVM defaultVM;
+        [ThreadStatic] public static JNIEnv threadJNIEnv;
 
-        private readonly IntPtr envPtr;
+        public readonly IntPtr envPtr;
         private JNINativeInterface functions;
         private JavaVM javaVM;
 
-        internal JNIEnv(IntPtr native)
+        public JNIEnv(IntPtr native)
         {
             this.envPtr = native;
             functions = *(*(JavaPtr*) native.ToPointer()).functions;

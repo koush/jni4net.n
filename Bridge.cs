@@ -67,18 +67,13 @@ namespace net.sf.jni4net
             }
         }
 		
-		public static JNIEnv SetJVM(JavaVM jvm)
+		public static void SetJVM(JavaVM jvm)
 		{
 			jvmLoaded = true;
 			clrLoaded = true;
 			setup = new BridgeSetup(false);
 			setup.BindStatic = false;
 			setup.BindCLRTypes = false;
-			JNIEnv env;
-			JNIResult res = jvm.GetEnv(out env, JNI.JNI_VERSION_1_4);
-			if (res != JNIResult.JNI_OK)
-				throw new JNIException("Unable to get env");
-			return env;
 		}
 
         public static JNIEnv CreateJVM(BridgeSetup setup)

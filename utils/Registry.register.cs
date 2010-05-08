@@ -89,7 +89,7 @@ namespace net.sf.jni4net.utils
             RegisterType(typeof (Float), true, env);
             RegisterType(typeof (Double), true, env);
 
-            RegisterPrimitiveType("boolean", typeof (bool), typeof (Boolean));
+			RegisterPrimitiveType("boolean", typeof (bool), typeof (Boolean));
             RegisterPrimitiveType("byte", typeof (byte), typeof (Byte));
             RegisterPrimitiveType("char", typeof (char), typeof (Character));
             RegisterPrimitiveType("short", typeof (short), typeof (Short));
@@ -126,6 +126,10 @@ namespace net.sf.jni4net.utils
             systemClassLoader = ClassLoader.getSystemClassLoader();
         }
 
+		public static void Initialize()
+		{
+		}
+		
         public static void RegisterAssembly(Assembly assembly, bool bindJVM)
         {
             lock (typeof (Registry))

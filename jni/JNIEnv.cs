@@ -1244,11 +1244,11 @@ namespace net.sf.jni4net.jni
             return Convertor.StrongJ2CpString(this, res);
         }
 
-        internal string ConvertToString(JniHandle javaString)
+        public string ConvertToString(JniHandle javaString)
         {
             byte b = 0;
             IntPtr chars = GetStringChars(javaString, &b);
-            string result = Marshal.PtrToStringUni(chars);
+            string result = Marshal.PtrToStringUni(chars, getStringLength(envPtr, javaString));
             ReleaseStringChars(javaString, chars);
             return result;
         }
@@ -1424,7 +1424,7 @@ namespace net.sf.jni4net.jni
             JniLocalHandle occurred = ExceptionOccurred();
             if (!JniLocalHandle.IsNull(occurred))
             {
-                //ExceptionDescribe();
+                ExceptionDescribe();
                 ExceptionClear();
                 Exception exception = Convertor.FullJ2C<Exception>(this, occurred);
                 throw exception;

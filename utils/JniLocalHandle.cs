@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2009 by Pavel Savara
+#region Copyright (C) 2009 by Pavel Savara
 
 /*
 This file is part of jni4net library - bridge between Java and .NET
@@ -30,7 +30,24 @@ namespace net.sf.jni4net.utils
     [StructLayout(LayoutKind.Sequential)]
     public struct JniLocalHandle
     {
-        internal IntPtr handle;
+        public static implicit operator JniLocalHandle(IntPtr ptr)
+        {
+			JniLocalHandle ret = new JniLocalHandle();
+			ret.handle = ptr;
+			return ret;
+        }
+
+        public static implicit operator IntPtr(JniLocalHandle handle)
+        {
+			return handle.handle;
+        }
+
+		public IntPtr handle;
+		
+		public JniLocalHandle(IntPtr ptr)
+		{
+			handle = ptr;
+		}
 
         public static JniLocalHandle Zero
         {

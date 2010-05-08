@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2009 by Pavel Savara
+#region Copyright (C) 2009 by Pavel Savara
 
 /*
 This file is part of jni4net library - bridge between Java and .NET
@@ -32,6 +32,18 @@ namespace net.sf.jni4net.utils
     public struct JniHandle
     {
         internal IntPtr handle;
+
+		public static implicit operator JniHandle(IntPtr ptr)
+        {
+			JniHandle ret = new JniHandle();
+			ret.handle = ptr;
+			return ret;
+        }
+
+        public static implicit operator IntPtr(JniHandle handle)
+        {
+			return handle.handle;
+        }
 
         public static bool IsNull(JniHandle handle)
         {

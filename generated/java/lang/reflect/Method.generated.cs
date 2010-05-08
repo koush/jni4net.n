@@ -68,17 +68,23 @@ namespace java.lang.reflect {
         [global::net.sf.jni4net.attributes.JavaMethodAttribute("I")]
         public static int PUBLIC {
             get {
+				/*
                 global::net.sf.jni4net.jni.JNIEnv @__env = global::net.sf.jni4net.jni.JNIEnv.ThreadEnv;
                 return ((int)(@__env.GetStaticIntField(global::java.lang.reflect.Method.staticClass, global::java.lang.reflect.Method._PUBLIC17)));
+				*/
+				return 0;
             }
         }
         
         [global::net.sf.jni4net.attributes.JavaMethodAttribute("I")]
         public static int DECLARED {
             get {
+				/*
                 global::net.sf.jni4net.jni.JNIEnv @__env = global::net.sf.jni4net.jni.JNIEnv.ThreadEnv;
                 return ((int)(@__env.GetStaticIntField(global::java.lang.reflect.Method.staticClass, global::java.lang.reflect.Method._DECLARED18)));
-            }
+				*/
+				return 1;
+			}
         }
         
         private static void InitJNI(global::net.sf.jni4net.jni.JNIEnv @__env, java.lang.Class @__class) {
@@ -100,8 +106,10 @@ namespace java.lang.reflect {
             global::java.lang.reflect.Method._getParameterAnnotations14 = @__env.GetMethodID(global::java.lang.reflect.Method.staticClass, "getParameterAnnotations", "()[[Ljava/lang/annotation/Annotation;");
             global::java.lang.reflect.Method._isBridge15 = @__env.GetMethodID(global::java.lang.reflect.Method.staticClass, "isBridge", "()Z");
             global::java.lang.reflect.Method._isVarArgs16 = @__env.GetMethodID(global::java.lang.reflect.Method.staticClass, "isVarArgs", "()Z");
-            global::java.lang.reflect.Method._PUBLIC17 = @__env.GetStaticFieldID(global::java.lang.reflect.Method.staticClass, "PUBLIC", "I");
+			/*
+			global::java.lang.reflect.Method._PUBLIC17 = @__env.GetStaticFieldID(global::java.lang.reflect.Method.staticClass, "PUBLIC", "I");
             global::java.lang.reflect.Method._DECLARED18 = @__env.GetStaticFieldID(global::java.lang.reflect.Method.staticClass, "DECLARED", "I");
+            */
         }
         
         [global::net.sf.jni4net.attributes.JavaMethodAttribute("()[Ljava/lang/reflect/TypeVariable;")]

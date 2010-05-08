@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2009 by Pavel Savara
+#region Copyright (C) 2009 by Pavel Savara
 
 /*
 This file is part of jni4net library - bridge between Java and .NET
@@ -32,13 +32,37 @@ namespace net.sf.jni4net.utils
     [StructLayout(LayoutKind.Sequential)]
     public struct JniGlobalHandleNs
     {
-        internal IntPtr handle;
+        public static implicit operator JniGlobalHandleNs(IntPtr ptr)
+        {
+			JniGlobalHandleNs ret = new JniGlobalHandleNs();
+			ret.handle = ptr;
+			return ret;
+        }
+
+        public static implicit operator IntPtr(JniGlobalHandleNs handle)
+        {
+			return handle.handle;
+        }
+
+		internal IntPtr handle;
     }
 
     [Serializable]
     public sealed class JniGlobalHandle : SafeHandle
     {
-        public static bool IsNull(JniGlobalHandle handle)
+        public static implicit operator JniGlobalHandle(IntPtr ptr)
+        {
+			JniGlobalHandle ret = new JniGlobalHandle();
+			ret.handle = ptr;
+			return ret;
+        }
+
+        public static implicit operator IntPtr(JniGlobalHandle handle)
+        {
+			return handle.handle;
+        }
+
+		public static bool IsNull(JniGlobalHandle handle)
         {
             return handle == null || handle.IsInvalid;
         }

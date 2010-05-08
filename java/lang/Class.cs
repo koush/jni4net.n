@@ -133,6 +133,17 @@ namespace java.lang
         public static Class getPrimitiveClass(string name)
         {
             JNIEnv env = JNIEnv.ThreadEnv;
+			try
+			{
+				Class shim = env.FindClass("com/koushikdutta/monojavabridge/MonoBridge");
+				MethodId shimMethodId = env.GetStaticMethodID(shim, "getPrimitiveClass", "(Ljava/lang/String;)Ljava/lang/Class;");
+	            return Convertor.StrongJ2CpClass(env,
+	                                             env.CallStaticObjectMethodPtr(shim, shimMethodId,
+	                                                                           Convertor.ParStrongC2JString(env, name)));
+			}
+			catch (Exception)
+			{
+			}
             MethodId id = env.GetStaticMethodID(staticClass, "getPrimitiveClass",
                                                 "(Ljava/lang/String;)Ljava/lang/Class;");
             return Convertor.StrongJ2CpClass(env,

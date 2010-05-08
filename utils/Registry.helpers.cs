@@ -239,6 +239,7 @@ namespace net.sf.jni4net.utils
                 low = low.Substring(0, arr);
                 arr = low.LastIndexOf("[");
             }
+			Console.WriteLine(low);
             switch (low)
             {
                 case "bool":
@@ -278,7 +279,7 @@ namespace net.sf.jni4net.utils
             }
         }
 
-        internal static string JavaSignature(Class clazz)
+        public static string JavaSignature(Class clazz)
         {
             string name = clazz.FullName;
             if (clazz.isPrimitive())
