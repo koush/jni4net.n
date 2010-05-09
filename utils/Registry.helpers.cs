@@ -239,7 +239,6 @@ namespace net.sf.jni4net.utils
                 low = low.Substring(0, arr);
                 arr = low.LastIndexOf("[");
             }
-			Console.WriteLine(low);
             switch (low)
             {
                 case "bool":
