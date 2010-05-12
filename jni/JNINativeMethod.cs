@@ -40,6 +40,15 @@ namespace net.sf.jni4net.jni
             meth.signature = Marshal.StringToHGlobalAnsi(javaSignature);
             return meth;
         }
+        
+        public static JNINativeMethod Create(Delegate del, string javaName, string javaSignature)
+        {
+            JNINativeMethod meth;
+            meth.fnPtr = Marshal.GetFunctionPointerForDelegate(del);
+            meth.name = Marshal.StringToHGlobalAnsi(javaName);
+            meth.signature = Marshal.StringToHGlobalAnsi(javaSignature);
+            return meth;
+        }
 
         public static JNINativeMethod Create(Type type, string javaName, string clrName, string javaSignature)
         {
@@ -49,6 +58,13 @@ namespace net.sf.jni4net.jni
                 throw new JNIException("Can'type find" + type.Name + "." + clrName);
             }
             return Create(methodInfo, javaName, javaSignature);
+        }
+        
+        public void Register(Class jvmProxy, JNIEnv env)
+        {
+            List<JNINativeMethod> l = new List<JNINativeMethod>();
+            l.Add(this);
+            Register(l, jvmProxy, env);
         }
 
         public static unsafe void Register(List<JNINativeMethod> registrations, Class jvmProxy, JNIEnv env)

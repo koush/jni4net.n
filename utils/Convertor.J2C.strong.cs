@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2009 by Pavel Savara
+#region Copyright (C) 2009 by Pavel Savara
 
 /*
 This file is part of jni4net library - bridge between Java and .NET
@@ -76,6 +76,19 @@ namespace net.sf.jni4net.utils
             Class clazz = env.GetObjectClass(obj);
             RegistryRecord record = Registry.GetJVMRecord(clazz);
             return (TRes) record.CreateCLRProxy(env, obj);
+        }
+
+        public static object StrongJ2CpUntyped(IntPtr ptr)
+        {
+            JNIEnv env = JNIEnv.ThreadEnv;
+            JniLocalHandle obj = ptr;
+            if (JniHandle.IsNull(obj))
+            {
+                return null;
+            }
+            Class clazz = env.GetObjectClass(obj);
+            RegistryRecord record = Registry.GetJVMRecord(clazz);
+            return record.CreateCLRProxy(env, obj);
         }
 
         #region Well known
