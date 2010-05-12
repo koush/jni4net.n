@@ -80,6 +80,7 @@ namespace net.sf.jni4net.utils
 
         public static object StrongJ2CpUntyped(IntPtr ptr)
         {
+            Console.WriteLine("I'm converting an object...");
             JNIEnv env = JNIEnv.ThreadEnv;
             JniLocalHandle obj = ptr;
             if (JniHandle.IsNull(obj))
@@ -88,7 +89,23 @@ namespace net.sf.jni4net.utils
             }
             Class clazz = env.GetObjectClass(obj);
             RegistryRecord record = Registry.GetJVMRecord(clazz);
+            Console.WriteLine("RegistryRecord: {0} {1}", record.CLRName, record.JVMName);
             return record.CreateCLRProxy(env, obj);
+        }
+
+        public static TRes StrongJ2CpTyped<TRes>(IntPtr ptr)
+        {
+            Console.WriteLine("I'm converting a handle... {0}", typeof(TRes));
+            JNIEnv env = JNIEnv.ThreadEnv;
+            JniLocalHandle obj = ptr;
+            if (JniHandle.IsNull(obj))
+            {
+                return default(TRes);
+            }
+            Class clazz = env.GetObjectClass(obj);
+            RegistryRecord record = Registry.GetJVMRecord(clazz);
+            Console.WriteLine("RegistryRecord: {0} {1}", record.CLRName, record.JVMName);
+            return (TRes)record.CreateCLRProxy(env, obj);
         }
 
         #region Well known

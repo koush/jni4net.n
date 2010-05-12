@@ -419,6 +419,24 @@ namespace net.sf.jni4net.jni
 
         #region call instance
 
+        public void CallNonVirtualVoidMethod(JniHandle obj, Class clazz, MethodId methodId, params Value[] args)
+        {
+            callNonvirtualVoidMethod(envPtr, obj, clazz.jvmHandle, methodId.native, args);
+            //TODO result could be tested in Java 1.6
+            ExceptionTest();
+        }
+
+        public void CallNonVirtualVoidMethod(IJvmProxy obj, Class clazz, MethodId methodId, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("IJvmProxy : " + obj.GetType().FullName);
+            }
+#endif
+            CallNonVirtualVoidMethod(obj.JvmHandle, clazz, methodId, args);
+        }
+
         public void CallVoidMethod(JniHandle obj, MethodId methodId, params Value[] args)
         {
             callVoidMethod(envPtr, obj, methodId.native, args);
@@ -1352,6 +1370,11 @@ namespace net.sf.jni4net.jni
 
         public void NewObject(Class clazz, MethodId methodID, IJvmProxy obj, params Value[] args)
         {
+            if (obj.JvmHandle != null && !obj.JvmHandle.IsInvalid)
+            {
+                Console.WriteLine("NewObject called on an object that was already instantiated.");
+                return;
+            }
             JniLocalHandle res = newObject(envPtr, clazz.jvmHandle, methodID.native, args);
             ExceptionTest();
             obj.Init(this, res);
