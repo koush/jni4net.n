@@ -92,10 +92,29 @@ namespace net.sf.jni4net.utils
             Console.WriteLine("RegistryRecord: {0} {1}", record.CLRName, record.JVMName);
             return record.CreateCLRProxy(env, obj);
         }
+        
+        private class ConstructerHelper<T>
+        {
+            static System.Reflection.ConstructorInfo constructor;
+            static ConstructerHelper()
+            {
+                constructor = typeof(T).GetConstructor(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.CreateInstance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic, null, new Type[] { typeof(JNIEnv) }, null);
+            }
+            
+            public static T Create(JNIEnv env)
+            {
+                return (T)constructor.Invoke(new object[] { env });
+            }
+        }
 
         public static TRes StrongJ2CpTyped<TRes>(IntPtr ptr)
         {
+            var env = JNIEnv.ThreadEnv;
             Console.WriteLine("I'm converting a handle... {0}", typeof(TRes));
+            var ret = ConstructerHelper<TRes>.Create(env);
+            (ret as IJvmProxy).Init(env, ptr);
+            return ret;
+            /*
             JNIEnv env = JNIEnv.ThreadEnv;
             JniLocalHandle obj = ptr;
             if (JniHandle.IsNull(obj))
@@ -106,6 +125,7 @@ namespace net.sf.jni4net.utils
             RegistryRecord record = Registry.GetJVMRecord(clazz);
             Console.WriteLine("RegistryRecord: {0} {1}", record.CLRName, record.JVMName);
             return (TRes)record.CreateCLRProxy(env, obj);
+            */
         }
 
         #region Well known

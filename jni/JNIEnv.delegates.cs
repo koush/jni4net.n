@@ -100,7 +100,7 @@ namespace net.sf.jni4net.jni
             #region Nested type: CallNonvirtualBooleanMethod
 
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            internal delegate byte CallNonvirtualBooleanMethod(
+            internal delegate byte CallNonvirtualBooleanMethod(IntPtr thiz,
                 IntPtr obj, IntPtr clazz, IntPtr methodID, params Value[] args);
 
             #endregion

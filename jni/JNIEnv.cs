@@ -418,23 +418,194 @@ namespace net.sf.jni4net.jni
         #endregion
 
         #region call instance
-
-        public void CallNonVirtualVoidMethod(JniHandle obj, Class clazz, MethodId methodId, params Value[] args)
-        {
-            callNonvirtualVoidMethod(envPtr, obj, clazz.jvmHandle, methodId.native, args);
-            //TODO result could be tested in Java 1.6
-            ExceptionTest();
-        }
-
-        public void CallNonVirtualVoidMethod(IJvmProxy obj, Class clazz, MethodId methodId, params Value[] args)
+        
+        public bool CallNonVirtualBooleanMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
         {
 #if DEBUG
             if (Bridge.Setup.VeryVerbose)
             {
-                Console.WriteLine("IJvmProxy : " + obj.GetType().FullName);
+                Console.WriteLine("CallNonVirtualBooleanMethod : " + obj.GetType().FullName);
             }
 #endif
-            CallNonVirtualVoidMethod(obj.JvmHandle, clazz, methodId, args);
+            var res = 0 != callNonvirtualBooleanMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public bool CallNonVirtualBooleanMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = 0 != callNonvirtualBooleanMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public void CallNonVirtualVoidMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualVoidMethod : " + obj.GetType().FullName);
+            }
+#endif
+            callNonvirtualVoidMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+        }
+
+        public void CallNonVirtualVoidMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            callNonvirtualVoidMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+        }
+        public IntPtr CallNonVirtualObjectMethodPtr(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualObjectMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = callNonvirtualObjectMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public IntPtr CallNonVirtualObjectMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = callNonvirtualObjectMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public byte CallNonVirtualByteMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualByteMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = callNonvirtualByteMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public byte CallNonVirtualByteMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = callNonvirtualByteMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public char CallNonVirtualCharMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualCharMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = (char)callNonvirtualCharMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public char CallNonVirtualCharMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = (char)callNonvirtualCharMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public short CallNonVirtualShortMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualShortMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = callNonvirtualShortMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public short CallNonVirtualShortMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = callNonvirtualShortMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public int CallNonVirtualIntMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualIntMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = callNonvirtualIntMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public int CallNonVirtualIntMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = callNonvirtualIntMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public long CallNonVirtualLongMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualLongMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = callNonvirtualLongMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public long CallNonVirtualLongMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = callNonvirtualLongMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public float CallNonVirtualFloatMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualFloatMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = callNonvirtualFloatMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public float CallNonVirtualFloatMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = callNonvirtualFloatMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+        public double CallNonVirtualDoubleMethod(IJvmProxy obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+#if DEBUG
+            if (Bridge.Setup.VeryVerbose)
+            {
+                Console.WriteLine("CallNonVirtualDoubleMethod : " + obj.GetType().FullName);
+            }
+#endif
+            var res = callNonvirtualDoubleMethod(envPtr, obj.JvmHandle, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
+        }
+
+        public double CallNonVirtualDoubleMethod(JniHandle obj, Class clazz, MethodId methodIdNative, params Value[] args)
+        {
+            var res = callNonvirtualDoubleMethod(envPtr, obj, clazz.jvmHandle, methodIdNative.native, args);
+            ExceptionTest();
+            return res;
         }
 
         public void CallVoidMethod(JniHandle obj, MethodId methodId, params Value[] args)
@@ -460,7 +631,7 @@ namespace net.sf.jni4net.jni
             JniLocalHandle res = CallObjectMethodPtr(obj, methodIdNative, args);
             return Convertor.FullJ2C<TRes>(this, res);
         }
-
+        
         public bool CallBooleanMethod(IJvmProxy obj, MethodId methodIdNative, params Value[] args)
         {
 #if DEBUG
@@ -719,6 +890,8 @@ namespace net.sf.jni4net.jni
             throw new ArgumentException();
         }
 
+        
+        
         #endregion
 
         #region getters instance
