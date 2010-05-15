@@ -182,8 +182,6 @@
     <Compile Include="generated\java\nio\BufferOverflowException.generated.cs" />
     <Compile Include="generated\java\nio\BufferUnderflowException.generated.cs" />
     <Compile Include="generated\java\nio\ByteOrder.generated.cs" />
-    <Compile Include="generated\java\nio\InvalidMarkException.generated.cs" />
-    <Compile Include="generated\java\nio\ReadOnlyBufferException.generated.cs" />
     <Compile Include="generated\net\sf\jni4net\BridgeSetup.generated.cs" />
     <Compile Include="generated\net\sf\jni4net\jni\IJvmProxy.generated.cs" />
     <Compile Include="generated\net\sf\jni4net\Out.generated.cs">
