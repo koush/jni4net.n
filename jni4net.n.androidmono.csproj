@@ -179,8 +179,6 @@
     <Compile Include="generated\java\lang\IndexOutOfBoundsException.generated.cs" />
     <Compile Include="generated\java\lang\NullPointerException.generated.cs" />
     <Compile Include="generated\java\lang\UnsupportedOperationException.generated.cs" />
-    <Compile Include="generated\java\nio\BufferOverflowException.generated.cs" />
-    <Compile Include="generated\java\nio\BufferUnderflowException.generated.cs" />
     <Compile Include="generated\java\nio\ByteOrder.generated.cs" />
     <Compile Include="generated\net\sf\jni4net\BridgeSetup.generated.cs" />
     <Compile Include="generated\net\sf\jni4net\jni\IJvmProxy.generated.cs" />
