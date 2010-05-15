@@ -1,4 +1,4 @@
-﻿#region Copyright (C) 2009 by Pavel Savara
+#region Copyright (C) 2009 by Pavel Savara
 
 /*
 This file is part of jni4net library - bridge between Java and .NET
@@ -61,7 +61,7 @@ namespace net.sf.jni4net.utils
                     return (TRes)__IClrProxy.CreateProxy(env, obj);
                 }
                 object res = __IClrProxy.GetObject(env, obj);
-                if (res==null && Delegate_._class.isAssignableFrom(clazz))
+                if (res==null && false)//Delegate_._class.isAssignableFrom(clazz))
                 {
                     //that's delegate implemented in Java
                     RegistryRecord delRecord = Registry.GetJVMRecord(clazz);

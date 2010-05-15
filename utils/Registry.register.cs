@@ -66,19 +66,11 @@ namespace net.sf.jni4net.utils
             RegisterType(typeof (Class), true, env);
             RegisterType(typeof (Object), true, env);
             RegisterType(typeof (String), true, env);
-            RegisterType(typeof (__Type), true, env);
-            RegisterType(typeof (__Object), true, env);
-            RegisterType(typeof (__String), true, env);
-            RegisterType(typeof (__IClrProxy), true, env);
             initialized = true;
 
             BindJvm(knownCLR[typeof (Class)], env);
             BindJvm(knownCLR[typeof (Object)], env);
             BindJvm(knownCLR[typeof (String)], env);
-            BindJvm(knownCLR[typeof (__Type)], env);
-            BindJvm(knownCLR[typeof (__Object)], env);
-            BindJvm(knownCLR[typeof (__String)], env);
-            BindJvm(knownCLR[typeof (__IClrProxy)], env);
 
             RegisterType(typeof (Boolean), true, env);
             RegisterType(typeof (Byte), true, env);
@@ -117,10 +109,7 @@ namespace net.sf.jni4net.utils
             Convertor.doubleValue = env.GetMethodID(Double.staticClass, "doubleValue", "()D");
             Convertor.floatValue = env.GetMethodID(Float.staticClass, "floatValue", "()F");
 
-            RegisterType(typeof(__Bridge), true, env);
-            RegisterType(typeof(__Exception), true, env);
             RegisterType(typeof(Throwable), true, env);
-            RegisterType(typeof(__IJvmProxy), true, env);
             RegisterType(typeof(ClassLoader), true, env);
 
             systemClassLoader = ClassLoader.getSystemClassLoader();
