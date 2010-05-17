@@ -88,7 +88,6 @@ namespace net.sf.jni4net.utils
             }
             Class clazz = env.GetObjectClass(obj);
             RegistryRecord record = Registry.GetJVMRecord(clazz);
-            Console.WriteLine("RegistryRecord: {0} {1}", record.CLRName, record.JVMName);
             return record.CreateCLRProxy(env, obj);
         }
         
