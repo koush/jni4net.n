@@ -68,6 +68,7 @@
     <Compile Include="jni\Structures.cs" />
     <Compile Include="jni\Value.cs" />
     <Compile Include="utils\IntHandle.cs" />
+    <Compile Include="attributes\JavaAssemblyAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="generated\java\io\Closeable.generated.cs" />

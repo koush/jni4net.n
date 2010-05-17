@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
@@ -9,3 +9,4 @@ using System.Security.Permissions;
 [assembly: FileIOPermission(SecurityAction.RequestMinimum, Unrestricted = true)]
 [assembly: EnvironmentPermission(SecurityAction.RequestMinimum, Read = "JAVA_HOME")]
 
+[assembly: net.sf.jni4net.attributes.JavaAssembly]
