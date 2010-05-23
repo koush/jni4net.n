@@ -22,7 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using java.lang;
-using net.sf.jni4net.inj;
 using net.sf.jni4net.jni;
 using Object=java.lang.Object;
 using String=java.lang.String;
@@ -31,41 +30,6 @@ namespace net.sf.jni4net.utils
 {
     partial class Convertor
     {
-        public static TRes StrongJp2C<TRes>(JNIEnv env, JniLocalHandle obj)
-        {
-            if (JniHandle.IsNull(obj))
-            {
-                return default(TRes);
-            }
-            object res = __IClrProxy.GetObject(env, obj);
-            return (TRes)res;
-        }
-
-
-        public static TRes StrongJ2CpDelegate<TRes>(JNIEnv env, JniLocalHandle obj)
-            where TRes : class //Delegate
-        {
-#if DEBUG
-            if (!typeof(Delegate).IsAssignableFrom(typeof(TRes)))
-            {
-                throw new ArgumentException("expected delegate");
-            }
-#endif
-            if (JniHandle.IsNull(obj))
-            {
-                return default(TRes);
-            }
-            object res = __IClrProxy.GetObject(env, obj);
-            if (res == null)
-            {
-                //that's delegate implemented in Java
-                RegistryRecord delRecord = Registry.GetCLRRecord(typeof(TRes));
-                IJvmProxy jvmProxy = delRecord.CreateCLRProxy(env, obj);
-                return (TRes)(object)Delegate.CreateDelegate(typeof(TRes), jvmProxy, delRecord.JVMDelegateInvoke);
-            }
-            return (TRes) res;
-        }
-
         public static TRes StrongJ2Cp<TRes>(JNIEnv env, JniLocalHandle obj)
             where TRes : IJvmProxy
         {
@@ -123,16 +87,6 @@ namespace net.sf.jni4net.utils
             }
             string res = env.ConvertToString(obj);
             return res;
-        }
-
-        public static string StrongJp2CString(JNIEnv env, JniLocalHandle obj)
-        {
-            if (JniHandle.IsNull(obj))
-            {
-                return null;
-            }
-            object res = __IClrProxy.GetObject(env, obj);
-            return (string) res;
         }
 
         public static String StrongJ2CpString(JNIEnv env, JniLocalHandle obj)

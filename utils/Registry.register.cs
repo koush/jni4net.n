@@ -26,7 +26,6 @@ using System.Reflection;
 using java.io;
 using java.lang;
 using net.sf.jni4net.attributes;
-using net.sf.jni4net.inj;
 using net.sf.jni4net.jni;
 using Boolean=java.lang.Boolean;
 using Byte=java.lang.Byte;
@@ -180,7 +179,7 @@ namespace net.sf.jni4net.utils
             RegisterClass(record, env);
             if (record.CLRProxy != null)
             {
-                if (record.IsJVMClass || Bridge.Setup.BindCLRTypes)
+                if (record.IsJVMClass)
                 {
                     RegisterStaticAndMethods(record, env);
                     if (record.IsDelegate)
@@ -195,14 +194,10 @@ namespace net.sf.jni4net.utils
                         record.JVMDelegateInvoke = record.CLRProxy.GetMethod("Invoke", param);
                     }
                 }
-                if (initialized && Bridge.Setup.BindStatic)
-                {
-                    RegisterTypeOf(record, env);
-                }
             }
             if (initialized)
             {
-                if (Bridge.Setup.BindNative && record.CLRWrapper != null)
+                if (record.CLRWrapper != null)
                 {
                     RegisterNative(record.CLRWrapperInitMethod, env, record.JVMProxy, record.JVMInterface);
                 }
@@ -238,28 +233,9 @@ namespace net.sf.jni4net.utils
                 proxyName = interfaceName;
                 staticName = interfaceName;
             }
-            if (Bridge.Setup.BindCLRTypes || record.IsJVMClass)
+            if (record.IsJVMClass)
             {
                 record.JVMInterface = LoadClass(interfaceName, env, false);
-            }
-            if (Bridge.Setup.BindStatic)
-            {
-                record.JVMStatic = LoadClass(staticName, env, false);
-                if (record.JVMStatic == null)
-                {
-                    throw new JNIException("Can't find java class for " + staticName);
-                }
-                if (proxyName != null)
-                {
-                    record.JVMProxy = LoadClass(proxyName, env, false);
-                    record.JVMConstructor = GetJVMConstructor(env, record.JVMProxy);
-                    if (record.JVMConstructor == null)
-                    {
-                        throw new JNIException("Can't find java constructor for " + record.JVMProxy);
-                    }
-                    knownJVMProxies[record.JVMProxy] = record;
-                    knownJVM[record.JVMProxy] = record;
-                }
             }
         }
 

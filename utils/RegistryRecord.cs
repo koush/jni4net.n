@@ -59,10 +59,7 @@ namespace net.sf.jni4net.utils
 
         internal JniLocalHandle CreateJVMProxy(JNIEnv env, object obj)
         {
-            if (!Bridge.Setup.BindNative)
-            {
-                throw new JNIException("you have to bind native method in order to create proxies to CLR types");
-            }
+            throw new JNIException("you have to bind native method in order to create proxies to CLR types");
             long handle = IntHandle.Alloc(obj);
             return env.NewObjectPtr(JVMProxy.jvmHandle, JVMConstructor, new Value(), new Value {_long = handle});
         }

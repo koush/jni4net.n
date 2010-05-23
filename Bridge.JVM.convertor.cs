@@ -24,7 +24,6 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using java.lang;
-using net.sf.jni4net.inj;
 using net.sf.jni4net.jni;
 using net.sf.jni4net.utils;
 using Exception=System.Exception;
@@ -93,30 +92,6 @@ namespace net.sf.jni4net
             }
         }
 
-        private static JniLocalHandle Cast(IntPtr @__envp, JniLocalHandle @__class, JniLocalHandle obj, JniLocalHandle expectedInterface)
-        {
-            JNIEnv env = JNIEnv.Wrap(@__envp);
-            try
-            {
-                Class expectedInterfaceClass = Convertor.StrongJ2CpClass(env, expectedInterface);
-                object real = __IClrProxy.GetObject(env, obj);
-                Type type = real.GetType();
-                RegistryRecord record = Registry.GetJVMRecord(expectedInterfaceClass);
-                Type reqType = record.CLRInterface;
-                if (!reqType.IsAssignableFrom(type))
-                {
-                    throw new InvalidCastException("Can't convert instance of CLR type " + type + " to " + reqType);
-                }
-
-                return record.CreateJVMProxy(env, real);
-            }
-            catch (Exception ex)
-            {
-                env.ThrowExisting(ex);
-            }
-            return JniLocalHandle.Zero;
-        }
-
         private static List<JNINativeMethod> __Init2(JNIEnv @__env, Class @__class)
         {
             Type @__type = typeof (__Bridge);
@@ -131,12 +106,9 @@ namespace net.sf.jni4net
 
         internal static void Init(JNIEnv env)
         {
-            if (Bridge.Setup.BindNative)
-            {
-                MethodInfo initializer = Registry.GetWrapperInitializer(typeof(__Bridge), "__Init2");
-                RegistryRecord record = Registry.GetCLRRecord(typeof(Bridge));
-                Registry.RegisterNative(initializer, env, record.JVMProxy, record.JVMInterface);
-            }
+            MethodInfo initializer = Registry.GetWrapperInitializer(typeof(__Bridge), "__Init2");
+            RegistryRecord record = Registry.GetCLRRecord(typeof(Bridge));
+            Registry.RegisterNative(initializer, env, record.JVMProxy, record.JVMInterface);
         }
     }
 }

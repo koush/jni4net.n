@@ -46,25 +46,7 @@ namespace net.sf.jni4net.utils
             }
             return (TRes) (object) res;
         }
-
-        public static TRes ArrayStrongJp2C<TRes, TElem>(JNIEnv env, JniLocalHandle array)
-            where TRes : class //should be TRes : Array
-        {
-            if (JniHandle.IsNull(array))
-            {
-                return default(TRes);
-            }
-            int length = env.GetArrayLength(array);
-            var res = new TElem[length];
-            for (int i = 0; i < length; i++)
-            {
-                JniLocalHandle elementPtr = env.GetObjectArrayElementPtr(array, i);
-                var element = StrongJp2C<TElem>(env, elementPtr);
-                res.SetValue(element, i);
-            }
-            return (TRes) (object) res;
-        }
-
+        
         public static TRes ArrayStrongJ2Cp<TRes, TElem>(JNIEnv env, JniLocalHandle array)
             where TElem : IJvmProxy
             where TRes : class //should be TRes : Array
@@ -98,23 +80,6 @@ namespace net.sf.jni4net.utils
             {
                 JniLocalHandle elementPtr = env.GetObjectArrayElementPtr(array, i);
                 String element = StrongJ2CpString(env, elementPtr);
-                res.SetValue(element, i);
-            }
-            return res;
-        }
-
-        public static string[] ArrayStrongJp2CString(JNIEnv env, JniLocalHandle array)
-        {
-            if (JniLocalHandle.IsNull(array))
-            {
-                return null;
-            }
-            int length = env.GetArrayLength(array);
-            var res = new string[length];
-            for (int i = 0; i < length; i++)
-            {
-                JniLocalHandle elementPtr = env.GetObjectArrayElementPtr(array, i);
-                String element = StrongJp2CString(env, elementPtr);
                 res.SetValue(element, i);
             }
             return res;

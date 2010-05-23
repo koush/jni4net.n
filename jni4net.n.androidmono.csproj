@@ -139,9 +139,6 @@
     <Compile Include="generated\java\util\Properties.generated.cs" />
     <Compile Include="generated\java\util\Set.generated.cs" />
     <Compile Include="generated\java_\lang\IObject.generated.cs" />
-    <Compile Include="generated\net\sf\jni4net\Bridge.generated.cs" />
-    <Compile Include="generated\net\sf\jni4net\inj\IClrProxy.generated.cs" />
-    <Compile Include="inj\IClrProxy.cs" />
     <Compile Include="java\lang\Class.cs" />
     <Compile Include="java\lang\Integer.cs" />
     <Compile Include="java\lang\IObject.cs" />
@@ -181,14 +178,6 @@
     <Compile Include="generated\java\lang\NullPointerException.generated.cs" />
     <Compile Include="generated\java\lang\UnsupportedOperationException.generated.cs" />
     <Compile Include="generated\java\nio\ByteOrder.generated.cs" />
-    <Compile Include="generated\net\sf\jni4net\BridgeSetup.generated.cs" />
-    <Compile Include="generated\net\sf\jni4net\jni\IJvmProxy.generated.cs" />
-    <Compile Include="generated\net\sf\jni4net\Out.generated.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="generated\net\sf\jni4net\Ref.generated.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="java\lang\Boolean.cs" />
     <Compile Include="java\lang\Byte.cs" />
     <Compile Include="java\lang\Character.cs" />
@@ -201,8 +190,6 @@
     <Compile Include="jni\JNIEnv.convert.cs" />
     <Compile Include="jni\JNIEnv.raw.cs" />
     <Compile Include="Bridge.CLR.convertor.cs" />
-    <Compile Include="Out.cs" />
-    <Compile Include="Ref.cs" />
     <Compile Include="utils\Convertor.C2J.array.cs" />
     <Compile Include="utils\Convertor.C2J.cs" />
     <Compile Include="utils\Convertor.C2J.strong.cs" />

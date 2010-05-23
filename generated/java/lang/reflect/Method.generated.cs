@@ -199,7 +199,8 @@ namespace java.lang.reflect {
         [global::net.sf.jni4net.attributes.JavaMethodAttribute("()[[Ljava/lang/annotation/Annotation;")]
         public virtual java.lang.annotation.Annotation[][] getParameterAnnotations() {
             global::net.sf.jni4net.jni.JNIEnv @__env = this.Env;
-            return global::net.sf.jni4net.utils.Convertor.ArrayStrongJp2C<java.lang.annotation.Annotation[][], java.lang.annotation.Annotation[]>(@__env, @__env.CallObjectMethodPtr(this, global::java.lang.reflect.Method._getParameterAnnotations14));
+            return null;
+            //return global::net.sf.jni4net.utils.Convertor.ArrayStrongJp2C<java.lang.annotation.Annotation[][], java.lang.annotation.Annotation[]>(@__env, @__env.CallObjectMethodPtr(this, global::java.lang.reflect.Method._getParameterAnnotations14));
         }
         
         [global::net.sf.jni4net.attributes.JavaMethodAttribute("()Z")]

@@ -22,7 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using java.lang;
-using net.sf.jni4net.inj;
 using net.sf.jni4net.jni;
 using String=java.lang.String;
 
@@ -50,34 +49,7 @@ namespace net.sf.jni4net.utils
             Class clazz = env.GetObjectClass(obj);
             if (reqType == typeof (string) && clazz == String._class)
             {
-                return (TRes) (object) StrongJp2CString(env, obj);
-            }
-
-            if (IClrProxy_._class.isAssignableFrom(clazz))
-            {
-                if (!reqType.IsInterface && typeof(IJvmProxy).IsAssignableFrom(reqType))
-                {
-                    //now we double wrap
-                    return (TRes)__IClrProxy.CreateProxy(env, obj);
-                }
-                object res = __IClrProxy.GetObject(env, obj);
-                if (res==null && false)//Delegate_._class.isAssignableFrom(clazz))
-                {
-                    //that's delegate implemented in Java
-                    RegistryRecord delRecord = Registry.GetJVMRecord(clazz);
-                    IJvmProxy jvmProxy = delRecord.CreateCLRProxy(env, obj);
-                    Delegate del = Delegate.CreateDelegate(delRecord.CLRInterface, jvmProxy, delRecord.JVMDelegateInvoke);
-                    return (TRes)(object)del;
-                }
-                if (Bridge.Setup.Debug)
-                {
-                    Type realType = res.GetType();
-                    if (!reqType.IsAssignableFrom(realType))
-                    {
-                        throw new InvalidCastException("Can't cast CLR instance" + realType + " to " + reqType);
-                    }
-                }
-                return (TRes) res;
+                return (TRes) (object) StrongJ2CString(env, obj);
             }
 
             //now we deal only with JVM instances

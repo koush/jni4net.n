@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using java.lang;
 using java_.lang;
-using net.sf.jni4net.inj;
 using net.sf.jni4net.jni;
 using net.sf.jni4net.utils;
 using Object = java.lang.Object;
@@ -32,66 +31,9 @@ namespace net.sf.jni4net
 {
     partial class Bridge
     {
-        public static bool IsCLRInstance(object obj)
-        {
-            var proxy = obj as IJvmProxy;
-            if (proxy != null)
-            {
-                return proxy is IClrProxy;
-            }
-            return true;
-        }
-
-        public static bool IsJVMInstance(object obj)
-        {
-            return !IsCLRInstance(obj);
-        }
-
-        public static Object WrapCLR(object obj)
-        {
-            var proxy = obj as IJvmProxy;
-            var clrProxy = proxy as IClrProxy;
-            if (proxy != null)
-            {
-                if (clrProxy != null)
-                {
-                    return (Object)clrProxy;
-                }
-                throw new JNIException("Can't wrap JVM instance");
-            }
-            Type type = obj.GetType();
-            JNIEnv env = JNIEnv.ThreadEnv;
-
-            RegistryRecord record = Registry.GetCLRRecord(type);
-            JniLocalHandle jvmProxy = record.CreateJVMProxy(env, obj);
-            return (Object)__IClrProxy.CreateProxy(env, jvmProxy);
-        }
-
-        public static TRes UnwrapCLR<TRes>(Object obj)
-        {
-            var clrProxy = obj as IClrProxy;
-            if (clrProxy == null)
-            {
-                throw new JNIException("Can't unwrap JVM instance");
-            }
-            long handle = clrProxy.getClrHandle();
-            object res = IntHandle.ToObject(handle);
-            Type type = res.GetType();
-            Type reqType = typeof(TRes);
-            if (!reqType.IsAssignableFrom(type))
-            {
-                throw new InvalidCastException("Can't cast CLR instance of " + type + " to " + reqType);
-            }
-            return (TRes) res;
-        }
-
         public static TRes Cast<TRes>(object obj)
         {
             Type reqType = typeof(TRes);
-            if (IsCLRInstance(obj))
-            {
-                throw new JNIException("Can't cast CLR instance of " + obj.GetType() + " to " + reqType);
-            }
             IJvmProxy proxy = obj as IJvmProxy;
             if (!reqType.IsInterface && !typeof(IObject).IsAssignableFrom(reqType))
             {

@@ -21,7 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endregion
 
 using System;
-using net.sf.jni4net.inj;
 using net.sf.jni4net.jni;
 
 namespace net.sf.jni4net.utils
@@ -45,11 +44,5 @@ namespace net.sf.jni4net.utils
         internal static MethodId longValue;
         internal static MethodId shortObject;
         internal static MethodId shortValue;
-
-        public static void InitProxy(JNIEnv env, JniLocalHandle obj, object real)
-        {
-            long handle = IntHandle.Alloc(real);
-            env.CallVoidMethod(obj, __IClrProxy._initProxy1, new Value {_long = handle});
-        }
     }
 }
