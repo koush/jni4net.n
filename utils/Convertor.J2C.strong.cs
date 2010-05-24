@@ -52,7 +52,7 @@ namespace net.sf.jni4net.utils
             }
             Class clazz = env.GetObjectClass(obj);
             RegistryRecord record = Registry.GetJVMRecord(clazz);
-            return record.CreateCLRProxy(env, obj);
+            return record.CreateCLRProxyNoDelete(env, obj);
         }
         
         private class ConstructerHelper<T>
@@ -73,7 +73,7 @@ namespace net.sf.jni4net.utils
         {
             var env = JNIEnv.ThreadEnv;
             var ret = ConstructerHelper<TRes>.Create(env);
-            (ret as IJvmProxy).Init(env, ptr);
+            (ret as IJvmProxy).InitNoDelete(env, ptr);
             return ret;
         }
 

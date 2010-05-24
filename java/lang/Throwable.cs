@@ -124,6 +124,11 @@ namespace java.lang
             jvmHandle = env.NewGlobalRef(obj);
             env.DeleteLocalRef(obj);
         }
+        
+        void IJvmProxy.InitNoDelete(JNIEnv env, JniLocalHandle obj)
+        {
+            jvmHandle = env.NewGlobalRef(obj);
+        }
 
         void IJvmProxy.Copy(JNIEnv env, JniGlobalHandle obj)
         {

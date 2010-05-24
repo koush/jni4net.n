@@ -70,6 +70,13 @@ namespace net.sf.jni4net.utils
             proxy.Init(env, obj);
             return proxy;
         }
+        
+        internal IJvmProxy CreateCLRProxyNoDelete(JNIEnv env, JniLocalHandle obj)
+        {
+            IJvmProxy proxy = CLRConstructor.CreateProxy(env);
+            proxy.InitNoDelete(env, obj);
+            return proxy;
+        }
 
         internal IJvmProxy CopyCLRProxy(JNIEnv env, JniGlobalHandle obj)
         {

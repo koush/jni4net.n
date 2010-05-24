@@ -33,6 +33,8 @@ namespace net.sf.jni4net.jni
 
         void Init(JNIEnv env, JniLocalHandle obj);
 
+        void InitNoDelete(JNIEnv env, JniLocalHandle obj);
+
         void Copy(JNIEnv env, JniGlobalHandle obj);
     }
 }

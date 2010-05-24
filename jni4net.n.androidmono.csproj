@@ -138,7 +138,6 @@
     <Compile Include="generated\java\util\Map.generated.cs" />
     <Compile Include="generated\java\util\Properties.generated.cs" />
     <Compile Include="generated\java\util\Set.generated.cs" />
-    <Compile Include="generated\java_\lang\IObject.generated.cs" />
     <Compile Include="java\lang\Class.cs" />
     <Compile Include="java\lang\Integer.cs" />
     <Compile Include="java\lang\IObject.cs" />
@@ -166,7 +165,6 @@
     <Compile Include="adaptors\Disposable.cs" />
     <Compile Include="adaptors\Enumerator.cs" />
     <Compile Include="AssemblyInf.cs" />
-    <Compile Include="Bridge.JVM.convertor.cs" />
     <Compile Include="BridgeSetup.cs" />
     <Compile Include="generated\java\io\ByteArrayInputStream.generated.cs" />
     <Compile Include="generated\java\io\ByteArrayOutputStream.generated.cs" />
