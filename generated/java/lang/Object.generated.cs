@@ -38,7 +38,7 @@ namespace java.lang {
         internal static global::net.sf.jni4net.jni.MethodId @__ctorObject9;
         
         [global::net.sf.jni4net.attributes.JavaMethodAttribute("()V")]
-        public Object() {
+        public Object() : this(global::net.sf.jni4net.jni.JNIEnv.ThreadEnv) {
             global::net.sf.jni4net.jni.JNIEnv @__env = global::net.sf.jni4net.jni.JNIEnv.ThreadEnv;
             @__env.NewObject(global::java.lang.Object.staticClass, global::java.lang.Object.@__ctorObject9, this);
         }

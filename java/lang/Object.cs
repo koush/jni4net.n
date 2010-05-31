@@ -25,6 +25,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using net.sf.jni4net.jni;
 using net.sf.jni4net.utils;
+using net.sf.jni4net.attributes;
 
 namespace java.lang
 {
@@ -34,11 +35,22 @@ namespace java.lang
 
         protected internal Object(JNIEnv env)
         {
+            Type type = GetType();
+            mIsClrObject = type.GetCustomAttributes(typeof(JavaClassAttribute), false).Length == 0 && type.GetCustomAttributes(typeof(JavaProxyAttribute), false).Length == 0;
         }
 
         protected JNIEnv Env
         {
             get { return JNIEnv.GetEnvForVm(jvmHandle.javaVM); }
+        }
+        
+        bool mIsClrObject;
+        public bool IsClrObject
+        {
+            get
+            {
+                return mIsClrObject;
+            }
         }
 
         #region Reference handling

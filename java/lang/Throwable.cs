@@ -27,6 +27,7 @@ using System.Runtime.Serialization;
 using java.io;
 using net.sf.jni4net;
 using net.sf.jni4net.adaptors;
+using net.sf.jni4net.attributes;
 using net.sf.jni4net.jni;
 using net.sf.jni4net.utils;
 
@@ -63,8 +64,19 @@ namespace java.lang
             }
         }
         
+        bool mIsClrObject;
+        public bool IsClrObject
+        {
+            get
+            {
+                return mIsClrObject;
+            }
+        }
+        
         protected internal Throwable(JNIEnv env)
         {
+            Type type = GetType();
+            mIsClrObject = type.GetCustomAttributes(typeof(JavaClassAttribute), false).Length == 0 && type.GetCustomAttributes(typeof(JavaProxyAttribute), false).Length == 0;
         }
 
         protected JNIEnv Env
