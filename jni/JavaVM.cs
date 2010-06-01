@@ -42,7 +42,7 @@ namespace net.sf.jni4net.jni
             functions = *(*(JavaPtr*) native.ToPointer()).functions;
         }
 
-        internal JNIResult AttachCurrentThread(out JNIEnv penv, JavaVMInitArgs? args)
+        public JNIResult AttachCurrentThread(out JNIEnv penv, JavaVMInitArgs? args)
         {
             if (attachCurrentThread == null)
             {
